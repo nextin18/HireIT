@@ -1,20 +1,19 @@
 FROM php:8.3-cli
 
+# Install system dependencies & Postgres PDO extension
 RUN apt-get update && apt-get install -y \
     git unzip curl zip libpq-dev \
-    nodejs npm \
     && docker-php-ext-install pdo pdo_pgsql
 
+# Copy Composer from official image
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
 COPY . .
 
+# Install PHP Dependencies
 RUN composer install --no-dev --optimize-autoloader --no-scripts
-
-RUN npm install
-RUN npm run build
 
 EXPOSE 10000
 
