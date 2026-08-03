@@ -3,28 +3,19 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\CandidateProfile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
 
-class RegisteredUserController extends Controller
+class CompanyRegisterController extends Controller
 {
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws ValidationException
-     */
     public function store(Request $request)
     {
-        // 1. Input Validation
+        // 1. Validate request payload
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -32,7 +23,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // 2. Database Transaction for Data Consistency
+        // 2. Wrap database changes in transaction
         DB::beginTransaction();
 
         try {
@@ -44,25 +35,14 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($validatedData['password']),
             ]);
 
-            // Assign Spatie Candidate role
-            $user->assignRole('Candidate');
-
-            // Initialize Candidate Profile
-            CandidateProfile::create([
-                'user_id' => $user->id,
-                'headline' => '',
-                'resume_path' => '',
-                'experience_years' => 0,
-                'current_salary' => 0.0,
-                'expected_salary' => 0.0,
-                'bio' => '',
-            ]);
+            // Assign Spatie Company role
+            $user->assignRole('Company');
 
             // Dispatch user registered event for email verification
             event(new Registered($user));
 
             // Generate Sanctum Bearer Token
-            $token = $user->createToken('auth_token')->plainTextToken;
+            $token = $user->createToken('company_auth_token')->plainTextToken;
 
             // Commit database transaction
             DB::commit();
@@ -70,25 +50,25 @@ class RegisteredUserController extends Controller
             // Return success JSON response
             return response()->json([
                 'success' => true,
-                'message' => 'Candidate registration successful.',
+                'message' => 'Company registration successful.',
                 'data' => [
                     'user' => [
                         'id' => $user->id,
                         'name' => $user->name,
                         'email' => $user->email,
                         'phone_number' => $user->phone_number,
-                        'role' => 'Candidate',
+                        'role' => 'Company',
                     ],
                     'token' => $token,
                     'token_type' => 'Bearer',
                 ],
-            ], 201)->cookie('access_token', $token, 60 * 24 * 7);  // 7 days expiration
+            ], 201)->cookie('access_token', $token, 60 * 24 * 7);
         } catch (\Throwable $e) {
             // Rollback database changes on failure
             DB::rollBack();
 
             // Log exception details
-            Log::error('Candidate Registration Failed: ' . $e->getMessage(), [
+            Log::error('Company Registration Error: ' . $e->getMessage(), [
                 'email' => $request->email,
                 'trace' => $e->getTraceAsString(),
             ]);
@@ -96,7 +76,7 @@ class RegisteredUserController extends Controller
             // Return standardized failure response
             return response()->json([
                 'success' => false,
-                'message' => 'Registration failed due to a server error. Please try again.',
+                'message' => 'Unable to register company right now. Please try again later.',
             ], 500);
         }
     }
