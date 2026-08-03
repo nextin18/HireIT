@@ -43,6 +43,7 @@ class CandidateProfileController extends Controller
                     'profile' => [
                         'id' => $profile->id,
                         'headline' => $profile->headline,
+                        'website' => $profile->website,
                         'resume_url' => $profile->resume_path ? asset('storage/' . $profile->resume_path) : null,
                         'experience_years' => $profile->experience_years,
                         'current_salary' => $profile->current_salary,
