@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\CompanyRegisterController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -8,9 +9,13 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::post('/register/candidate', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
-    ->name('register');
+    ->name('register.candidate');
+
+Route::post('/register/company', [CompanyRegisterController::class, 'store'])
+    ->middleware('guest')
+    ->name('register.company');
 
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])
     ->middleware('guest')
