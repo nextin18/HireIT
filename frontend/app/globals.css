@@ -1,8 +1,61 @@
 @import "tailwindcss";
 
 :root {
+  --secondryColor: #ff5a18;
   --background: #ffffff;
   --foreground: #171717;
+  --blacktext: #000;  
+  
+  --btnActiveBg: #000;
+  --btndeactiveBg: #fff;
+  --btnActiveText: #fff;
+  --btndeactiveText: #555;
+  --btnactiveBorder: #000;
+  --btndeactiveBorder: #b7b7b7;
+  --btnHoverBg: #000;
+
+  --inputBorder: #d1d5db;
+  --inputFocusBorder: #3b82f6;
+  --inputFocusRing: #3b82f6;
+  --inputPlaceholder: #9caf9e;
+  --inputBg: #f4f8f9;
+
+
+}
+
+@layer components {
+  /* Reusable class declaration */
+
+
+  .authMaindev {
+    @apply min-h-screen bg-background lg:flex;
+  }
+
+  .inputform {
+    @apply min-w-full border border-(--inputBorder) bg-(--inputBg) rounded-md py-2 px-4 focus:outline-none focus:ring-(--inputFocusRing) focus:border-(--inputFocusBorder);
+  }
+
+  .btn-toggle {
+    @apply h-12 rounded-lg border text-sm font-medium transition cursor-pointer;
+  }
+
+  /* Active Button State */
+  .btn-toggle-active {
+    @apply border-(--btnactiveBorder) bg-(--btnActiveBg) text-(--btnActiveText);
+  }
+
+  /* Inactive / Deactive Button State */
+  .btn-toggle-inactive {
+    @apply border-(--btndeactiveBorder) bg-(--btndeactiveBg) text-(--btndeactiveText) hover:border-(--btnactiveBorder);
+  }
+
+  .singLink {
+    @apply font-semibold text-(--secondryColor) hover:underline;
+  }
+
+  .actionBtn {
+    @apply bg-(--secondryColor) text-white min-w-full py-2 px-4 rounded-md;
+  }
 }
 
 @theme inline {
