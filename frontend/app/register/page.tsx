@@ -7,7 +7,7 @@ import CompanyRes from "@/components/resgister/CompanyRes";
 import Aside from "@/components/auth/Aside";
 import globalStyles from "../globals.css";
 import Link from "next/link";
-
+import { Toggle } from "@/components/ui/Toggle";
 
 type AccountType = "job-finder" | "company";
 
@@ -16,6 +16,7 @@ export default function registration() {
 
     return (
         <main className="authMaindev">
+            <Toggle className="absolute top-4 right-4 z-50" variant="circle" start="top-right" />
             <Aside />
 
             {/* Form side */}
