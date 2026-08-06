@@ -15,11 +15,16 @@ return [
     |
     */
 
-    'paths' => ['*'],
+    // 'paths' => ['*'],
+
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:3000')],
+    'allowed_origins' => [
+        'http://localhost:3000',                  // Next.js Local Dev
+        'https://hire-it-jade.vercel.app/',    // Next.js Production URL
+    ],
 
     'allowed_origins_patterns' => [],
 
