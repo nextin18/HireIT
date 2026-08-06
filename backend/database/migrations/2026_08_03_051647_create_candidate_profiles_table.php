@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('headline')->nullable();
             $table->string('website')->nullable();
             $table->string('resume_path')->nullable();
-            $table->integer('experience_years')->default(0);
+            $table->string('experience_years')->default('Fresher');
             $table->decimal('current_salary', 12, 2)->default(0.0);
             $table->decimal('expected_salary', 12, 2)->default(0.0);
             $table->text('bio')->nullable();

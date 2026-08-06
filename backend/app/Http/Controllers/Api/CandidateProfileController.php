@@ -23,8 +23,9 @@ class CandidateProfileController extends Controller
                 ['user_id' => $user->id],
                 [
                     'headline' => '',
+                    'website' => '',
                     'resume_path' => '',
-                    'experience_years' => 0,
+                    'experience_years' => 'Fresher',
                     'current_salary' => 0.0,
                     'expected_salary' => 0.0,
                     'bio' => '',
@@ -95,6 +96,9 @@ class CandidateProfileController extends Controller
             // Fill text details
             if (array_key_exists('headline', $validated)) {
                 $profile->headline = $validated['headline'];
+            }
+            if (array_key_exists('website', $validated)) {
+                $profile->website = $validated['website'];
             }
             if (array_key_exists('experience_years', $validated)) {
                 $profile->experience_years = $validated['experience_years'];
