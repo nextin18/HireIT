@@ -69,19 +69,16 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         try {
-            // Revoke currently active token
-            $request->user()->currentAccessToken()->delete();
+            // Revoke current Sanctum access token
+            if ($request->user()) {
+                $request->user()->currentAccessToken()->delete();
+            }
 
             return response()->json([
                 'success' => true,
                 'message' => 'Logged out successfully.',
-            ], 200)->withoutCookie('access_token');
+            ], 200);
         } catch (\Throwable $e) {
-            Log::error('Logout Error: ' . $e->getMessage(), [
-                'user_id' => $request->user()->id ?? null,
-                'trace' => $e->getTraceAsString(),
-            ]);
-
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to logout.',

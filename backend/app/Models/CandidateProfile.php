@@ -31,10 +31,10 @@ class CandidateProfile extends Model
     /**
      * Relationship: Candidate has many Work Experiences
      */
-    // public function experiences()
-    // {
-    //     return $this->hasMany(CandidateExperience::class, 'candidate_id');
-    // }
+    public function experiences()
+    {
+        return $this->hasMany(CandidateExperience::class, 'candidate_id');
+    }
 
     /**
      * Relationship: Candidate has many Educations

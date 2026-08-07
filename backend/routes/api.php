@@ -1,12 +1,17 @@
 <?php
 
+use App\Http\Controllers\Api\CandidateExperienceController;
 use App\Http\Controllers\Api\CandidateProfileController;
+use App\Http\Controllers\Api\CompanyController;
+use App\Http\Controllers\Api\CompanyLocationController;
+use App\Http\Controllers\Api\CompanySocialLinkController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    // Get Authenticated User
     Route::get('/me', function (Request $request) {
         $user = $request->user();
         $role = $user->getRoleNames()->first();
@@ -28,6 +33,36 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Candidate Routes
 Route::middleware(['auth:sanctum', 'role:Candidate'])->group(function () {
+    // Profile - Show
     Route::get('/candidate/profile', [CandidateProfileController::class, 'show']);
+    // Profile - Update
     Route::post('/candidate/profile', [CandidateProfileController::class, 'update']);
+
+    // Experience - Index
+    Route::get('/candidate/experiences', [CandidateExperienceController::class, 'index']);
+    // Experience - Create
+    Route::post('/candidate/experiences', [CandidateExperienceController::class, 'store']);
+    // Experience - Update
+    Route::put('/candidate/experiences/{id}', [CandidateExperienceController::class, 'update']);
+    // Experience - Delete
+    Route::delete('/candidate/experiences/{id}', [CandidateExperienceController::class, 'destroy']);
+});
+
+// Company Routes
+Route::middleware(['auth:sanctum', 'role:Company'])->group(function () {
+    // Company Profile - Show
+    Route::get('/company/profile', [CompanyController::class, 'show']);
+    // Company Profile - Update
+    Route::post('/company/profile', [CompanyController::class, 'update']);
+
+    // Dedicated Locations CRUD
+    Route::get('/company/locations', [CompanyLocationController::class, 'index']);
+    Route::post('/company/locations', [CompanyLocationController::class, 'store']);
+    Route::put('/company/locations/{id}', [CompanyLocationController::class, 'update']);
+    Route::delete('/company/locations/{id}', [CompanyLocationController::class, 'destroy']);
+
+    // Dedicated Social Links CRUD
+    Route::get('/company/social-links', [CompanySocialLinkController::class, 'index']);
+    Route::post('/company/social-links', [CompanySocialLinkController::class, 'store']);
+    Route::delete('/company/social-links/{id}', [CompanySocialLinkController::class, 'destroy']);
 });

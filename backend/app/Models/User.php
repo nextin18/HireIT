@@ -51,10 +51,10 @@ class User extends Authenticatable
     /**
      * Relationship: User has one Company Profile
      */
-    // public function company()
-    // {
-    //     return $this->hasOne(Company::class);
-    // }
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
 
     /**
      * Relationship: User has many Posts
