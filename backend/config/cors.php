@@ -22,8 +22,8 @@ return [
     'allowed_methods' => ['*'],
 
     'allowed_origins' => [
-        'http://localhost:3000',                  // Next.js Local Dev
-        'https://hire-it-jade.vercel.app/',    // Next.js Production URL
+    'http://localhost:3000',
+    'https://hire-it-jade.vercel.app',
     ],
 
     'allowed_origins_patterns' => [],
