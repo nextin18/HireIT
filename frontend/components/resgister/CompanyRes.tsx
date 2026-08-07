@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import {SmoothInput} from '@/components/ui/skiper-ui/skiper106'
-
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
 
 function CompanyRes() {
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         fullName: '',
@@ -22,7 +24,7 @@ function CompanyRes() {
             !/\d/.test(formData.password) ||
             !/[^A-Za-z0-9]/.test(formData.password));
 
-    function formhandle(e: React.FormEvent<HTMLFormElement>) {
+    async function formhandle(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         if (phoneError || passwordError || passwordMismatch) return;
         console.log(formData);
@@ -33,6 +35,16 @@ function CompanyRes() {
             password: '',
             confirmPassword: ''
         });
+
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/register/company`, formData);
+        if (response.status === 200 || response.status === 201) {
+        alert('Company Registered Successfully!');
+        } else { 
+            alert('Failed to register company.');
+        }
+        router.push('/home')
+        console.log(response.data);
+
     }
 
 
