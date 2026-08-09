@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CandidateEducationController;
 use App\Http\Controllers\Api\CandidateExperienceController;
 use App\Http\Controllers\Api\CandidateProfileController;
+use App\Http\Controllers\Api\CandidateSkillController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\CompanyLocationController;
 use App\Http\Controllers\Api\CompanySocialLinkController;
@@ -34,21 +35,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Candidate Routes
 Route::middleware(['auth:sanctum', 'role:Candidate'])->group(function () {
-    // Profile - Show
+    // Profile - Show, Update
     Route::get('/candidate/profile', [CandidateProfileController::class, 'show']);
-    // Profile - Update
     Route::post('/candidate/profile', [CandidateProfileController::class, 'update']);
 
-    // Experience - Index
+    // Experience - Index, Store, Update, Delete
     Route::get('/candidate/experiences', [CandidateExperienceController::class, 'index']);
-    // Experience - Create
     Route::post('/candidate/experiences', [CandidateExperienceController::class, 'store']);
-    // Experience - Update
     Route::put('/candidate/experiences/{id}', [CandidateExperienceController::class, 'update']);
-    // Experience - Delete
     Route::delete('/candidate/experiences/{id}', [CandidateExperienceController::class, 'destroy']);
 
+    // Education - Index, Store, Update, Delete
     Route::apiResource('candidate/educations', CandidateEducationController::class);
+    
+    // Skills - Index, Store, Update, Delete
+    Route::apiResource('candidate/skills', CandidateSkillController::class)->except(['show']);
 });
 
 // Company Routes
