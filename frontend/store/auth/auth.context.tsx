@@ -1,0 +1,23 @@
+"use client"
+import {createContext, useState, ReactNode} from "react";
+
+interface AuthContextType {
+  user: any;
+  setUser: React.Dispatch<React.SetStateAction<any>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+
+export const AuthContext = createContext<AuthContextType | undefined>(undefined)
+
+export const AuthProvider = ({children}: {children: ReactNode})=>{
+    const [user,setUser]=useState(null)
+    const [loading, setLoading] = useState(false)
+
+    return(
+        <AuthContext.Provider value={{user,setUser,loading,setLoading}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
