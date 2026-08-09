@@ -39,10 +39,10 @@ class CandidateProfile extends Model
     /**
      * Relationship: Candidate has many Educations
      */
-    // public function educations()
-    // {
-    //     return $this->hasMany(CandidateEducation::class, 'candidate_id');
-    // }
+    public function educations()
+    {
+        return $this->hasMany(CandidateEducation::class, 'candidate_id');
+    }
 
     /**
      * Relationship: Candidate has many Skills (Pivot Table)

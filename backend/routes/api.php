@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CandidateEducationController;
 use App\Http\Controllers\Api\CandidateExperienceController;
 use App\Http\Controllers\Api\CandidateProfileController;
 use App\Http\Controllers\Api\CompanyController;
@@ -46,6 +47,8 @@ Route::middleware(['auth:sanctum', 'role:Candidate'])->group(function () {
     Route::put('/candidate/experiences/{id}', [CandidateExperienceController::class, 'update']);
     // Experience - Delete
     Route::delete('/candidate/experiences/{id}', [CandidateExperienceController::class, 'destroy']);
+
+    Route::apiResource('candidate/educations', CandidateEducationController::class);
 });
 
 // Company Routes
