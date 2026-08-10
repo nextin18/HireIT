@@ -1,9 +1,14 @@
-
+"use client"
 import React from 'react'
 import { useState } from 'react'
-import {SmoothInput} from '@/components/ui/skiper-ui/skiper106'
+import { SmoothInput } from '@/components/ui/skiper-ui/skiper106'
+import { useAuth } from '@/hook/useAuth'
+import { useRouter } from "next/navigation";
 
 function CanditateRes() {
+
+  const router = useRouter();
+  const { handleResigterCanditate, loading, user } = useAuth()
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -22,11 +27,13 @@ function CanditateRes() {
       !/\d/.test(formData.password) ||
       !/[^A-Za-z0-9]/.test(formData.password));
 
-  function formhandle(e: React.FormEvent<HTMLFormElement>) {
+  async function formhandle(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (phoneError || passwordError || passwordMismatch) return;
     console.log(formData);
 
+    await handleResigterCanditate(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword)
+    console.log("user", user)
     setFormData({
       fullName: '',
       email: '',
@@ -34,7 +41,7 @@ function CanditateRes() {
       password: '',
       confirmPassword: ''
     });
-
+    router.push('/home');
   }
 
   return (
@@ -44,7 +51,7 @@ function CanditateRes() {
           type="text"
           placeholder="Full Name" required
           value={formData.fullName}
-          onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
           className="inputform text-base"
           wrapperClassName="min-w-full max-w-none rounded-none bg-transparent p-0 has-[:focus-visible]:!outline-none"
         />
@@ -53,7 +60,7 @@ function CanditateRes() {
           inputMode="email"
           placeholder="Email" required
           value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           className="inputform text-base"
           wrapperClassName="min-w-full max-w-none rounded-none bg-transparent p-0 has-[:focus-visible]:!outline-none"
         />
@@ -62,18 +69,18 @@ function CanditateRes() {
             type="tel"
             placeholder="Phone number" required minLength={10}
             value={formData.phoneNumber}
-            onChange={(e) => setFormData({...formData, phoneNumber: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
             className="inputform text-base"
             wrapperClassName="min-w-full max-w-none rounded-none bg-transparent p-0 has-[:focus-visible]:!outline-none"
           />
           {phoneError && <p className="mt-1 text-sm text-(--secondryColor)" role="alert">Phone number must contain at least 10 digits.</p>}
         </div>
         <div>
-          <SmoothInput 
+          <SmoothInput
             type="password"
             placeholder="Password" required minLength={8}
             value={formData.password}
-            onChange={(e) => setFormData({...formData, password: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="inputform text-base bg-(--inputBg)"
             wrapperClassName="min-w-full max-w-none rounded-none bg-transparent p-0 has-[:focus-visible]:!outline-none"
           />
@@ -85,7 +92,7 @@ function CanditateRes() {
             placeholder="Confirm Password"
             required
             value={formData.confirmPassword}
-            onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
             className="inputform text-base"
             wrapperClassName="min-w-full max-w-none rounded-none bg-transparent p-0 has-[:focus-visible]:!outline-none"
           />
