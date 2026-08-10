@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Aside from '@/components/auth/Aside'
 import NextIn from '@/components/ui/NextIn'
 import LoginForm from '@/components/login/LogInForms'
@@ -12,16 +12,24 @@ import { toast } from '@/components/ui/shadcn/toast'
 function page() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const pageMounted = useRef(false)
+  const hadUserOnInitialLoad = useRef(false)
 
-  // If someone already logged in.
   useEffect(() => {
-    if (!loading && user) {
-      toast.add({
-        title: 'You are already logged in',
-        description: 'Redirecting to home page.',
-        type: 'info',
-      })
-      router.replace('/home')
+    if (loading) return
+
+    if (!pageMounted.current) {
+      pageMounted.current = true
+      hadUserOnInitialLoad.current = Boolean(user)
+
+      if (user) {
+        toast.add({
+          title: '✨Already logged in, Legend.',
+          // description: 'Redirecting to home page.',
+          type: 'info',
+        })
+        router.replace('/home')
+      }
     }
   }, [loading, user, router])
 

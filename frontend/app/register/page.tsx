@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NextIn from "@/components/ui/NextIn";
 import CanditateRes from "@/components/resgister/CanditateRes";
 import CompanyRes from "@/components/resgister/CompanyRes";
@@ -22,16 +22,23 @@ export default function registration() {
 
     const { user, loading } = useAuth()
     const router = useRouter()
+    const hasMounted = useRef(false)
 
-    // If someone is alreadt logged in.
+    // If someone is already logged in.
     useEffect(() => {
-        if (!loading && user) {
-            toast.add({
-                title: 'You are already logged in',
-                description: 'Redirecting to home page.',
-                type: 'info',
-            })
-            router.replace('/home')
+        if (loading) return
+
+        if (!hasMounted.current) {
+            hasMounted.current = true
+
+            if (user) {
+                toast.add({
+                    title: '✨Already logged in, Legend.',
+                    // description: 'Redirecting to home page.',
+                    type: 'info',
+                })
+                router.replace('/home')
+            }
         }
     }, [loading, user, router])
 

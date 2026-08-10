@@ -23,25 +23,25 @@ function LoginForm() {
     try {
       const loggedInUser = await handleLogin(formData.email, formData.password);
       console.log("Logged in user:", loggedInUser);
-     
+
       toast.add({
-        title: "Login successful.",
-        description: "Welcome back!",
+        title: "😎Legend, your are in.",
+        description: "✨You're in WElcom Back.",
         type: "success",
       });
-      
+
       setFormData({
         email: '',
         password: ''
       });
-      
+
       router.push('/home');
-    
+
     } catch (error) {
-      
+
       toast.add({
-        title: "Login failed.",
-        description: "Check email and password.",
+        title: "😶Ooops!Login failed. Try again.😁",
+        description: "🤔Wrong email & password. Lock in and try again.😁",
         type: "error",
       });
     }
