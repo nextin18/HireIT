@@ -26,7 +26,7 @@ class UpdateCandidateProfileRequest extends FormRequest
         return [
             'headline' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'string', 'max:255'],
-            'resume' => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:5120'],  // 5MB max
+            'resume_path' => ['nullable', 'file', 'mimes:pdf,doc,docx', 'max:5120'],  // 5MB max
             'experience_years' => ['nullable', 'string', 'min:0', 'max:50'],
             'current_salary' => ['nullable', 'numeric', 'min:0'],
             'expected_salary' => ['nullable', 'numeric', 'min:0'],

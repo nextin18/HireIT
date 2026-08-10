@@ -5,23 +5,23 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCompanyProfileRequest;
 use App\Models\Company;
+use App\Models\User;
+use App\Services\ImageKitService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use App\Models\User;
-use App\Services\ImageKitService;
 
 class CompanyController extends Controller
 {
-
     protected ImageKitService $imageKit;
 
     public function __construct(ImageKitService $imageKit)
     {
         $this->imageKit = $imageKit;
     }
+
     /**
      * Get or create company profile for logged-in user.
      */
@@ -62,8 +62,8 @@ class CompanyController extends Controller
                         'company_name' => $company->company_name,
                         'slug' => $company->slug,
                         'tagline' => $company->tagline,
-                        'logo_url' => $company->logo ? Storage::url($company->logo) : null,
-                        'cover_image_url' => $company->cover_image ? Storage::url($company->cover_image) : null,
+                        'logo_url' => $company->logo ? (str_starts_with($company->logo, 'http') ? $company->logo : Storage::url($company->logo)) : null,
+                        'cover_image_url' => $company->cover_image ? (str_starts_with($company->cover_image, 'http') ? $company->cover_image : Storage::url($company->cover_image)) : null,
                         'website' => $company->website,
                         'industry' => $company->industry,
                         'company_size' => $company->company_size,
@@ -106,22 +106,32 @@ class CompanyController extends Controller
 
             // 1. Logo update (Delete Old + Upload New)
             if ($request->hasFile('logo')) {
-                if (!empty($company->logo)) {
-                    $this->imageKit->deleteByUrl($company->logo);
+                $oldLogo = $company->getOriginal('logo') ?? $company->logo;
+                if (!empty($oldLogo)) {
+                    if (str_starts_with($oldLogo, 'http')) {
+                        $this->imageKit->deleteByUrl($oldLogo);
+                    } else {
+                        Storage::disk('public')->delete($oldLogo);
+                    }
                 }
                 $validated['logo'] = $this->imageKit->upload($request->file('logo'), '/companies/logos');
             }
 
             // 2. Cover image update (Delete Old + Upload New)
             if ($request->hasFile('cover_image')) {
-                if (!empty($company->cover_image)) {
-                    $this->imageKit->deleteByUrl($company->cover_image);
+                $oldCover = $company->getOriginal('cover_image') ?? $company->cover_image;
+                if (!empty($oldCover)) {
+                    if (str_starts_with($oldCover, 'http')) {
+                        $this->imageKit->deleteByUrl($oldCover);
+                    } else {
+                        Storage::disk('public')->delete($oldCover);
+                    }
                 }
                 $validated['cover_image'] = $this->imageKit->upload($request->file('cover_image'), '/companies/covers');
             }
 
             // Update slug if company_name changes
-            if (! empty($validated['company_name']) && $validated['company_name'] !== $company->company_name) {
+            if (!empty($validated['company_name']) && $validated['company_name'] !== $company->company_name) {
                 $validated['slug'] = Str::slug($validated['company_name']) . '-' . Str::random(5);
             }
 
