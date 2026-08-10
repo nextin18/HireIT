@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCandidateProfileRequest;
 use App\Models\CandidateProfile;
+use App\Services\ImageKitService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CandidateProfileController extends Controller
 {
+    protected ImageKitService $imageKit;
+
+    public function __construct(ImageKitService $imageKit)
+    {
+        $this->imageKit = $imageKit;
+    }
+
     public function show(Request $request): JsonResponse
     {
         try {
@@ -45,7 +53,7 @@ class CandidateProfileController extends Controller
                         'id' => $profile->id,
                         'headline' => $profile->headline,
                         'website' => $profile->website,
-                        'resume_url' => $profile->resume_path ? asset('storage/' . $profile->resume_path) : null,
+                        'resume_url' => $profile->resume_path ? (str_starts_with($profile->resume_path, 'http') ? $profile->resume_path : asset('storage/' . $profile->resume_path)) : null,
                         'experience_years' => $profile->experience_years,
                         'current_salary' => $profile->current_salary,
                         'expected_salary' => $profile->expected_salary,
@@ -81,21 +89,32 @@ class CandidateProfileController extends Controller
             // Fetch existing profile or instantiate
             $profile = CandidateProfile::firstOrNew(['user_id' => $user->id]);
 
-            // Handle Resume Upload
-            if ($request->hasFile('resume')) {
-                // Delete old resume if present
-                if ($profile->resume_path && Storage::disk('public')->exists($profile->resume_path)) {
-                    Storage::disk('public')->delete($profile->resume_path);
-                }
+            if ($request->hasFile('resume_path')) {
+                $resumeFile = $request->file('resume_path');
 
-                // Store new file in 'resumes' folder
-                $path = $request->file('resume')->store('resumes', 'public');
-                $profile->resume_path = $path;
+                if ($resumeFile && $resumeFile->isValid()) {
+                    // 1. Explicitly fetch old resume URL from DB record
+                    $oldResumeUrl = $profile->getOriginal('resume_path') ?? $profile->resume_path;
+
+                    // 2. Delete old resume from ImageKit
+                    if (!empty($oldResumeUrl)) {
+                        $this->imageKit->deleteByUrl($oldResumeUrl);
+                    }
+
+                    // 3. Upload new resume to ImageKit
+                    $newResumeUrl = $this->imageKit->upload($resumeFile, '/candidates/resumes');
+
+                    $validated['resume_path'] = $newResumeUrl;
+                    $profile->resume_path = $newResumeUrl;  // Direct assign on model to ensure sync
+                }
             }
 
             // Fill text details
             if (array_key_exists('headline', $validated)) {
                 $profile->headline = $validated['headline'];
+            }
+            if (array_key_exists('resume_path', $validated)) {
+                $profile->resume_path = $validated['resume_path'];
             }
             if (array_key_exists('website', $validated)) {
                 $profile->website = $validated['website'];
@@ -123,7 +142,7 @@ class CandidateProfileController extends Controller
                 'data' => [
                     'id' => $profile->id,
                     'headline' => $profile->headline,
-                    'resume_url' => $profile->resume_path ? asset('storage/' . $profile->resume_path) : null,
+                    'resume_url' => $profile->resume_path,
                     'experience_years' => $profile->experience_years,
                     'current_salary' => $profile->current_salary,
                     'expected_salary' => $profile->expected_salary,
