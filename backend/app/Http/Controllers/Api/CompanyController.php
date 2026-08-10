@@ -10,24 +10,32 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Models\User;
 
 class CompanyController extends Controller
 {
+    /**
+     * Get or create company profile for logged-in user.
+     */
+    private function getCompanyProfile(User $user): Company
+    {
+        return $user->company ?? Company::create([
+            'user_id' => $user->id,
+            'company_name' => $user->name,
+            'slug' => Str::slug($user->name) . '-' . Str::random(5),
+            'status' => 'active',
+            'is_verified' => false,
+        ]);
+    }
+
+    /**
+     * Fetch authenticated company profile.
+     */
     public function show(Request $request)
     {
         try {
             $user = $request->user();
-
-            // Fetch existing company or create empty profile record if missing
-            $company = Company::firstOrCreate(
-                ['user_id' => $user->id],
-                [
-                    'company_name' => $user->name,
-                    'slug' => Str::slug($user->name) . '-' . Str::random(5),
-                    'status' => 'active',
-                    'is_verified' => false,
-                ]
-            );
+            $company = $this->getCompanyProfile($user);
 
             // Load locations & social links
             $company->load(['locations', 'socialLinks']);
@@ -46,8 +54,8 @@ class CompanyController extends Controller
                         'company_name' => $company->company_name,
                         'slug' => $company->slug,
                         'tagline' => $company->tagline,
-                        'logo_url' => $company->logo ? asset('storage/' . $company->logo) : null,
-                        'cover_image_url' => $company->cover_image ? asset('storage/' . $company->cover_image) : null,
+                        'logo_url' => $company->logo ? Storage::url($company->logo) : null,
+                        'cover_image_url' => $company->cover_image ? Storage::url($company->cover_image) : null,
                         'website' => $company->website,
                         'industry' => $company->industry,
                         'company_size' => $company->company_size,
@@ -76,18 +84,17 @@ class CompanyController extends Controller
         }
     }
 
+    /**
+     * Update company profile (Handles text & File uploads).
+     */
     public function update(UpdateCompanyProfileRequest $request)
     {
         DB::beginTransaction();
 
         try {
             $user = $request->user();
+            $company = $this->getCompanyProfile($user);
             $validated = $request->validated();
-
-            $company = Company::firstOrCreate(['user_id' => $user->id], [
-                'company_name' => $user->name,
-                'slug' => Str::slug($user->name) . '-' . Str::random(5),
-            ]);
 
             // Handle Logo Upload
             if ($request->hasFile('logo')) {
@@ -105,8 +112,8 @@ class CompanyController extends Controller
                 $validated['cover_image'] = $request->file('cover_image')->store('companies/covers', 'public');
             }
 
-            // Update slug if company name changes
-            if (!empty($validated['company_name']) && $validated['company_name'] !== $company->company_name) {
+            // Update slug if company_name changes
+            if (! empty($validated['company_name']) && $validated['company_name'] !== $company->company_name) {
                 $validated['slug'] = Str::slug($validated['company_name']) . '-' . Str::random(5);
             }
 
