@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
 
 class CompanyRegisterController extends Controller
 {
@@ -38,6 +39,14 @@ class CompanyRegisterController extends Controller
             // Assign Spatie Company role
             $user->assignRole('Company');
 
+            // Create default/initial Company Profile record
+            $company = $user->company()->create([
+                'company_name' => $validatedData['name'],
+                'slug' => Str::slug($validatedData['name']) . '-' . Str::random(5),
+                'status' => 'active',
+                'is_verified' => false,
+            ]);
+
             // Dispatch user registered event for email verification
             event(new Registered($user));
 
@@ -58,6 +67,13 @@ class CompanyRegisterController extends Controller
                         'email' => $user->email,
                         'phone_number' => $user->phone_number,
                         'role' => 'Company',
+                    ],
+                    'company' => [
+                        'id' => $company->id,
+                        'company_name' => $company->company_name ?? $user->name,
+                        'slug' => $company->slug,
+                        'status' => $company->status,
+                        'is_verified' => $company->is_verified,
                     ],
                     'token' => $token,
                     'token_type' => 'Bearer',

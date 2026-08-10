@@ -54,19 +54,15 @@ Route::middleware(['auth:sanctum', 'role:Candidate'])->group(function () {
 
 // Company Routes
 Route::middleware(['auth:sanctum', 'role:Company'])->group(function () {
-    // Company Profile - Show
+    // Company Profile - Show, Update
     Route::get('/company/profile', [CompanyController::class, 'show']);
-    // Company Profile - Update
     Route::post('/company/profile', [CompanyController::class, 'update']);
 
-    // Dedicated Locations CRUD
-    Route::get('/company/locations', [CompanyLocationController::class, 'index']);
-    Route::post('/company/locations', [CompanyLocationController::class, 'store']);
-    Route::put('/company/locations/{id}', [CompanyLocationController::class, 'update']);
-    Route::delete('/company/locations/{id}', [CompanyLocationController::class, 'destroy']);
+    // Company Locations - Index, Store, Update, Delete
+    Route::apiResource('company/locations', CompanyLocationController::class)
+    ->except(['show']);
 
-    // Dedicated Social Links CRUD
-    Route::get('/company/social-links', [CompanySocialLinkController::class, 'index']);
-    Route::post('/company/social-links', [CompanySocialLinkController::class, 'store']);
-    Route::delete('/company/social-links/{id}', [CompanySocialLinkController::class, 'destroy']);
+    // Company Social Links - Index, Store, Update, Delete
+    Route::apiResource('company/social-links', CompanySocialLinkController::class)
+    ->except(['show']);
 });
