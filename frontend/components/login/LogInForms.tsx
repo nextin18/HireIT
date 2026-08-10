@@ -5,13 +5,13 @@ import { SmoothInput } from '@/components/ui/skiper-ui/skiper106'
 import { useState } from 'react'
 import { useAuth } from "@/hook/useAuth";
 import { useRouter } from "next/navigation";
-
+import { toast } from "@/components/ui/shadcn/toast"
 
 
 function LoginForm() {
 
   const router = useRouter();
-  const { user, loading, handleLogin } = useAuth()
+  const { handleLogin } = useAuth()
 
   const [formData, setFormData] = useState({
     email: '',
@@ -20,15 +20,31 @@ function LoginForm() {
 
   async function formhandle(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(formData);
-
-    await handleLogin(formData.email, formData.password);
-    console.log("user", user);
-    setFormData({
-      email: '',
-      password: ''
-    });
-    router.push('/home');
+    try {
+      const loggedInUser = await handleLogin(formData.email, formData.password);
+      console.log("Logged in user:", loggedInUser);
+     
+      toast.add({
+        title: "Login successful.",
+        description: "Welcome back!",
+        type: "success",
+      });
+      
+      setFormData({
+        email: '',
+        password: ''
+      });
+      
+      router.push('/home');
+    
+    } catch (error) {
+      
+      toast.add({
+        title: "Login failed.",
+        description: "Check email and password.",
+        type: "error",
+      });
+    }
   }
 
 
