@@ -77,7 +77,7 @@ class AuthenticatedSessionController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Logged out successfully.',
-            ], 200);
+            ], 200)->withoutCookie('access_token');
         } catch (\Throwable $e) {
             return response()->json([
                 'success' => false,

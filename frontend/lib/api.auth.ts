@@ -52,6 +52,16 @@ export async function getCurrentUser(toker: string) {
   return response.data;
 }
 
+export async function logout(token: string) {
+  const response = await api.post('/logout', {}, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/json"
+    }
+  });
+
+  return response.data;
+}
 
 
 

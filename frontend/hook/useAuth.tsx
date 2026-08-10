@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from "@/store/auth/auth.context";
-import { login, registerCompany,resigterCanditates ,getCurrentUser } from "@/lib/api.auth";
+import { login, logout, registerCompany, resigterCanditates } from "@/lib/api.auth";
 
 
 export const useAuth = () => {
@@ -11,6 +11,7 @@ export const useAuth = () => {
         setLoading(true)
         const response = await login(username, password)
         setUser(response.data.user);
+        console.log("Login response:", response)
         localStorage.setItem("token", response.data.token);
         setLoading(false)
     }
@@ -23,14 +24,27 @@ export const useAuth = () => {
         setLoading(false)
     }
 
-    const handleResigterCanditate= async(name:string, email:string, phone_number:string, password:string, password_confirmation:string)=>{
+    const handleResigterCanditate = async (name: string, email: string, phone_number: string, password: string, password_confirmation: string) => {
         setLoading(true)
-        const response = await resigterCanditates(name,email,phone_number,password,password_confirmation)
+        const response = await resigterCanditates(name, email, phone_number, password, password_confirmation)
         setUser(response.data.user)
         localStorage.setItem("token", response.data.token);
         setLoading(false)
     }
 
+    const handleLogout = async () => {
+        const token = localStorage.getItem("token");
 
-    return { user, setUser, loading, setLoading, handleLogin, handleRegisterCompany, handleResigterCanditate}
+        try {
+            if (token) {
+                await logout(token);
+            }
+        } finally {
+            localStorage.removeItem("token");
+            setUser(null);
+            window.location.replace("/");
+        }
+    }
+
+    return { user, setUser, loading, setLoading, handleLogin, handleRegisterCompany, handleResigterCanditate, handleLogout }
 }
