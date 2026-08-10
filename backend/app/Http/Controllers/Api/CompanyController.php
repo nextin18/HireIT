@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Services\ImageKitService;
 
 class CompanyController extends Controller
 {
+
+    protected ImageKitService $imageKit;
+
+    public function __construct(ImageKitService $imageKit)
+    {
+        $this->imageKit = $imageKit;
+    }
     /**
      * Get or create company profile for logged-in user.
      */
@@ -96,20 +104,20 @@ class CompanyController extends Controller
             $company = $this->getCompanyProfile($user);
             $validated = $request->validated();
 
-            // Handle Logo Upload
+            // 1. Logo update (Delete Old + Upload New)
             if ($request->hasFile('logo')) {
-                if ($company->logo && Storage::disk('public')->exists($company->logo)) {
-                    Storage::disk('public')->delete($company->logo);
+                if (!empty($company->logo)) {
+                    $this->imageKit->deleteByUrl($company->logo);
                 }
-                $validated['logo'] = $request->file('logo')->store('companies/logos', 'public');
+                $validated['logo'] = $this->imageKit->upload($request->file('logo'), '/companies/logos');
             }
 
-            // Handle Cover Image Upload
+            // 2. Cover image update (Delete Old + Upload New)
             if ($request->hasFile('cover_image')) {
-                if ($company->cover_image && Storage::disk('public')->exists($company->cover_image)) {
-                    Storage::disk('public')->delete($company->cover_image);
+                if (!empty($company->cover_image)) {
+                    $this->imageKit->deleteByUrl($company->cover_image);
                 }
-                $validated['cover_image'] = $request->file('cover_image')->store('companies/covers', 'public');
+                $validated['cover_image'] = $this->imageKit->upload($request->file('cover_image'), '/companies/covers');
             }
 
             // Update slug if company_name changes
@@ -129,8 +137,8 @@ class CompanyController extends Controller
                     'id' => $company->id,
                     'company_name' => $company->company_name,
                     'slug' => $company->slug,
-                    'logo_url' => $company->logo ? asset('storage/' . $company->logo) : null,
-                    'cover_image_url' => $company->cover_image ? asset('storage/' . $company->cover_image) : null,
+                    'logo_url' => $company->logo,
+                    'cover_image_url' => $company->cover_image,
                     'tagline' => $company->tagline,
                     'website' => $company->website,
                     'industry' => $company->industry,
