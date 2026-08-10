@@ -39,20 +39,20 @@ class CandidateProfile extends Model
     /**
      * Relationship: Candidate has many Educations
      */
-    // public function educations()
-    // {
-    //     return $this->hasMany(CandidateEducation::class, 'candidate_id');
-    // }
+    public function educations()
+    {
+        return $this->hasMany(CandidateEducation::class, 'candidate_id');
+    }
 
     /**
      * Relationship: Candidate has many Skills (Pivot Table)
      */
-    // public function skills()
-    // {
-    //     return $this
-    //         ->belongsToMany(Skill::class, 'candidate_skill', 'candidate_id', 'skill_id')
-    //         ->withPivot('experience_years');
-    // }
+    public function skills()
+    {
+        return $this
+            ->belongsToMany(Skill::class, 'candidate_skills', 'candidate_id', 'skill_id')
+            ->withPivot('experience_years');
+    }
 
     /**
      * Relationship: Candidate has many Job Applications
