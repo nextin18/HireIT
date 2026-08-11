@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/skiper-ui/theme-provider";
 import { Toggle } from "@/components/ui/Toggle";
 import { AuthProvider } from "@/store/auth/auth.context";
-
+import {Toaster} from "@/components/ui/shadcn/toast"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +36,7 @@ export default function RootLayout({
           {/* <Toggle /> */}
           <AuthProvider>
           {children}
+          <Toaster />
           </AuthProvider>
         </ThemeProvider>
       </body>

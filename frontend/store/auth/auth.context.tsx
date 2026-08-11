@@ -1,4 +1,5 @@
 "use client"
+import axios from "axios";
 import { createContext, useEffect, useState, ReactNode } from "react";
 import { getCurrentUser } from "@/lib/api.auth";
 
@@ -27,10 +28,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             try {
                 const response = await getCurrentUser(token);
-                setUser(response.data.user);
-            } catch {
-                // The saved token is no longer valid, so do not keep a stale login.
-                localStorage.removeItem("token");
+                const currentUser = response.data.user;
+                setUser(currentUser);
+                console.log("Restored logged in user:", currentUser);
+            } catch (error) {
+                console.error("Unable to restore the logged-in user:", error);
+
+                if (axios.isAxiosError(error) && error.response?.status === 401) {
+                    localStorage.removeItem("token");
+                }
+
                 setUser(null);
             } finally {
                 setLoading(false);

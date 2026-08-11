@@ -8,28 +8,41 @@ export const useAuth = () => {
     const { user, setUser, loading, setLoading } = context || { user: null, setUser: () => { }, loading: false, setLoading: () => { } }
 
     const handleLogin = async (username: string, password: string) => {
-        setLoading(true)
-        const response = await login(username, password)
-        setUser(response.data.user);
-        console.log("Login response:", response)
-        localStorage.setItem("token", response.data.token);
-        setLoading(false)
+        setLoading(true);
+        try {
+            const response = await login(username, password);
+            const { user, token } = response.data;
+
+            setUser(user);
+            localStorage.setItem("token", token);
+            console.log("Logged in user:", user);
+
+            return user;
+        } finally {
+            setLoading(false);
+        }
     }
 
     const handleRegisterCompany = async (name: string, email: string, phone_number: string, password: string, password_confirmation: string) => {
         setLoading(true)
-        const response = await registerCompany(name, email, phone_number, password, password_confirmation)
-        setUser(response.data.user)
-        localStorage.setItem("token", response.data.token);
-        setLoading(false)
+        try {
+            const response = await registerCompany(name, email, phone_number, password, password_confirmation)
+            setUser(response.data.user)
+            localStorage.setItem("token", response.data.token);
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleResigterCanditate = async (name: string, email: string, phone_number: string, password: string, password_confirmation: string) => {
         setLoading(true)
-        const response = await resigterCanditates(name, email, phone_number, password, password_confirmation)
-        setUser(response.data.user)
-        localStorage.setItem("token", response.data.token);
-        setLoading(false)
+        try {
+            const response = await resigterCanditates(name, email, phone_number, password, password_confirmation)
+            setUser(response.data.user)
+            localStorage.setItem("token", response.data.token);
+        } finally {
+            setLoading(false)
+        }
     }
 
     const handleLogout = async () => {

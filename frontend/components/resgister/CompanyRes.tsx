@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { SmoothInput } from "@/components/ui/skiper-ui/skiper106";
 import { useAuth } from "@/hook/useAuth";
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/shadcn/toast"
+
 
 function CompanyRes() {
 
@@ -36,16 +38,33 @@ function CompanyRes() {
         if (phoneError || passwordError || passwordMismatch) return;
         console.log(formData)
 
-        await handleRegisterCompany(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword);
-        console.log("user", user);
-        setFormData({
-            fullName: "",
-            email: "",
-            phoneNumber: "",
-            password: "",
-            confirmPassword: "",
-        });
-        router.push('/home');
+        try {
+
+            await handleRegisterCompany(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword);
+            console.log("user", user);
+
+            toast.add({
+                title: "✨Registered succesfully.",
+                description: "Company registered. You're all set.🚀",
+                type: "success"
+            })
+
+
+            setFormData({
+                fullName: "",
+                email: "",
+                phoneNumber: "",
+                password: "",
+                confirmPassword: "",
+            });
+            router.push('/home');
+        } catch (error) {
+            toast.add({
+                title: "😶Ooops!Registration failed. Try again.😁",
+                description: "🤔Wrong email & password. Lock in and try again.😁",
+                type: "error",
+            });
+        }
     }
 
     return (

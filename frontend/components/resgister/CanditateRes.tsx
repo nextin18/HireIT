@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { SmoothInput } from '@/components/ui/skiper-ui/skiper106'
 import { useAuth } from '@/hook/useAuth'
 import { useRouter } from "next/navigation";
+import { toast } from "@/components/ui/shadcn/toast"
+
 
 function CanditateRes() {
 
@@ -32,16 +34,32 @@ function CanditateRes() {
     if (phoneError || passwordError || passwordMismatch) return;
     console.log(formData);
 
-    await handleResigterCanditate(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword)
-    console.log("user", user)
-    setFormData({
-      fullName: '',
-      email: '',
-      phoneNumber: '',
-      password: '',
-      confirmPassword: ''
-    });
-    router.push('/home');
+    try {
+      await handleResigterCanditate(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword)
+      console.log("user", user)
+
+      toast.add({
+        title: "🔥You are in! Registration complete.",
+        description: "Welcom Aboard",
+        type: "success",
+      })
+      setFormData({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        password: '',
+        confirmPassword: ''
+      });
+      router.push('/home');
+    } catch (error) {
+      toast.add({
+        title: "😶Ooops!Registration failed. Try again.😁",
+        description: "🤔Wrong email & password. Lock in and try again.😁",
+        type: "error",
+      });
+    }
+
+
   }
 
   return (
