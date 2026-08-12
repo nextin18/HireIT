@@ -2,8 +2,8 @@ import React from 'react'
 
 function NextIn() {
     return (
-        <div className="relative text-[23px] font-bold tracking-[-1px]">
-            next<span className="text-[#ff5a18]">IN</span>
+        <div className="relative text-[1.8rem] text-(--thirdColor) font-bold tracking-[-1px]">
+            next<span className="text-(--secondryColor)">IN</span>
         </div>
     )
 }

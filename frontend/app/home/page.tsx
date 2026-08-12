@@ -19,7 +19,7 @@ function HomePage() {
   }
 
   return (
-    <div className='bg-amber-300 text-4xl h-full'>Home </div>
+    <div className='text-4xl h-full'>Home </div>
   )
 }
 
