@@ -27,7 +27,7 @@ function LoginForm() {
       console.log("Logged in user:", loggedInUser);
 
       toast.update(toastId, {
-        render: "✨ You nailed it!You’re in! 🐬",
+        render: "✨ You nailed it! You’re in! 🐬",
         type: "success",
         isLoading: false,
         autoClose: 5000,
