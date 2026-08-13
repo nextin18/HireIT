@@ -3,8 +3,8 @@ import { Geist, Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/skiper-ui/theme-provider";
 import { Toggle } from "@/components/ui/Toggle";
-import { AuthProvider } from "@/store/auth/auth.context";
-import { Toaster } from "@/components/ui/shadcn/toast"
+import { AuthProvider } from "@/store/auth/auth.context"; 
+import ToastProvider from "@/components/ui/ToastProvider";
 import Navigation from "@/components/navbar/Navigation"
 import SideNevigation from "@/components/navbar/SideNevigation";
 import Applayout from "@/components/layout/Applayout";
@@ -46,7 +46,7 @@ export default function RootLayout({
             <Applayout>
               {children}
             </Applayout>
-            <Toaster />
+            <ToastProvider />
           </AuthProvider>
         </ThemeProvider>
       </body>

@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { SmoothInput } from '@/components/ui/skiper-ui/skiper106'
 import { useAuth } from '@/hook/useAuth'
 import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/shadcn/toast"
+import { toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function CanditateRes() {
@@ -33,16 +34,18 @@ function CanditateRes() {
     e.preventDefault();
     if (phoneError || passwordError || passwordMismatch) return;
     console.log(formData);
-
+    const toastId = toast.loading("🔐 Unlocking your access bro.")
     try {
       await handleResigterCanditate(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword)
       console.log("user", user)
 
-      toast.add({
-        title: "🔥You are in! Registration complete.",
-        description: "Welcom Aboard",
+
+      toast.update(toastId, {
+        render: "✨ Registration nailed! You’re in! 🐬",
         type: "success",
-      })
+        isLoading: false,
+        autoClose: 5000,
+      });
       setFormData({
         fullName: '',
         email: '',
@@ -52,10 +55,11 @@ function CanditateRes() {
       });
       router.push('/home');
     } catch (error) {
-      toast.add({
-        title: "😶Ooops!Registration failed. Try again.😁",
-        description: "🤔Wrong email & password. Lock in and try again.😁",
+      toast.update(toastId, {
+        render: "💀 Oops, we fumbled that one. Let’s try again!",
         type: "error",
+        isLoading: false,
+        autoClose: 3000,
       });
     }
 

@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { SmoothInput } from "@/components/ui/skiper-ui/skiper106";
 import { useAuth } from "@/hook/useAuth";
 import { useRouter } from "next/navigation";
-import { toast } from "@/components/ui/shadcn/toast"
+import { toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function CompanyRes() {
@@ -38,16 +39,20 @@ function CompanyRes() {
         if (phoneError || passwordError || passwordMismatch) return;
         console.log(formData)
 
+        const toastId = toast.loading("🔐 Unlocking your access bro.")
+
         try {
 
             await handleRegisterCompany(formData.fullName, formData.email, formData.phoneNumber, formData.password, formData.confirmPassword);
             console.log("user", user);
 
-            toast.add({
-                title: "✨Registered succesfully.",
-                description: "Company registered. You're all set.🚀",
-                type: "success"
-            })
+
+            toast.update(toastId, {
+                render: "✨ Company registered! You’re officially in! 🐬",
+                type: "success",
+                isLoading: false,
+                autoClose: 5000,
+            });
 
 
             setFormData({
@@ -59,10 +64,11 @@ function CompanyRes() {
             });
             router.push('/home');
         } catch (error) {
-            toast.add({
-                title: "😶Ooops!Registration failed. Try again.😁",
-                description: "🤔Wrong email & password. Lock in and try again.😁",
+            toast.update(toastId, {
+                render: "💀 Oops, we fumbled that one. Let’s try again!",
                 type: "error",
+                isLoading: false,
+                autoClose: 3000,
             });
         }
     }
