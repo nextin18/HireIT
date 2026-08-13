@@ -7,7 +7,7 @@ import LoginForm from '@/components/login/LogInForms'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hook/useAuth'
-import { toast } from '@/components/ui/shadcn/toast'
+import { toast, Bounce } from "react-toastify";
 
 function page() {
   const { user, loading } = useAuth()
@@ -23,11 +23,17 @@ function page() {
       hadUserOnInitialLoad.current = Boolean(user)
 
       if (user) {
-        toast.add({
-          title: '✨Already logged in, Legend.',
-          // description: 'Redirecting to home page.',
-          type: 'info',
-        })
+        toast.warning("You’re locked, bro", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         router.replace('/home')
       }
     }
