@@ -32,21 +32,17 @@ export default function Applayout({ children }: { children: React.ReactNode }) {
     // After login, this will be show.
     return (
         <>
-            {/* Upper navigation */}
-            <Navigation />
+            <header className="fixed inset-x-0 top-0 z-50 h-20">
+                <Navigation />
+            </header>
 
-            {/* Main layout */}
-            <div className="grid h-[calc(100vh-80px)] grid-cols-[240px_1fr]">
-                {/* Side Navigation */}
-                <aside className="h-full overflow-hidden border-r border-(--thirdColor) px-4 py-5 bg-(--primaryColor)">
-                    <SideNevigation />
-                </aside>
+            <aside className="fixed bottom-0 left-0 top-20 z-40 w-60 border-r border-(--thirdColor) bg-(--primaryColor) px-4 py-5">
+                <SideNevigation />
+            </aside>
 
-                {/* Pages layout */}
-                <main className="min-w-0 overflow-y-auto">
-                    {children}
-                </main>
-            </div>
+            <main className="ml-60 min-h-screen pt-20">
+                {children}
+            </main>
         </>
     );
 }

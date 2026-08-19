@@ -6,6 +6,8 @@ import ReactFlagsSelect from "react-flags-select";
 import { PiBell } from "react-icons/pi";
 import SearchInput from "@/components/ui/SearchInput";
 import NextIn from '@/components/ui/NextIn'
+import Link from 'next/link';
+
 
 export default function Navigation() {
 
@@ -45,7 +47,7 @@ export default function Navigation() {
           <div className="h-6 w-px bg-(--thirdColor)/15" />
 
           {/* Search Icon */}
-          <div className=' w-5/6'>
+          <div className=' w-7/8 ml-2'>
             <SearchInput value={search} onChange={setSearch} placeholder="Job title, KEyword, Company" />
           </div>
         </form>
@@ -54,10 +56,12 @@ export default function Navigation() {
       {/* Notification & Profile */}
       <div className='flex justify-between items-center gap-5'>
         <PiBell size={25} className='text-(--thirdColor)' />
-        <Avatar size='lg'>
-          <AvatarImage src="https://i.pinimg.com/736x/66/60/db/6660dbdd674c320d6570cbaa764d4dbb.jpg" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        <Link href={"/profile"}>
+          <Avatar size='lg'>
+            <AvatarImage src="https://i.pinimg.com/736x/66/60/db/6660dbdd674c320d6570cbaa764d4dbb.jpg" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+        </Link>
       </div>
 
     </div>

@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "name": "Software Development",
+    "slug": "software-development",
+    "icon": "💻",
+    "is_active": true
+  }
+]

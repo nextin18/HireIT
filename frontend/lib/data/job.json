@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Okhla, Delhi",
+    "category_id": 1,
+    "is_active": true,
+     "description": "We are looking for a talented Frontend Developer to join our growing team. You will work with designers, developers, and product teams to build clean, responsive, and user-friendly web applications. The role involves translating project requirements into high-quality, maintainable code and delivering exceptional digital experiences.",
+
+  "requirements": [
+    "Great troubleshooting and analytical skills combined with the desire to tackle challenges head-on",
+    "3+ years of experience in frontend development working on multiple projects",
+    "Experience with HTML, JavaScript, CSS, and modern frontend frameworks",
+    "Working regularly with APIs and Web Services",
+    "Familiarity with version control and project management systems such as GitHub and Jira"
+  ],
+
+  "benefits": [
+    "28 days holiday including bank holidays",
+    "Generous annual bonus",
+    "Healthcare package",
+    "Free breakfast on Mondays and free snacks in the office",
+    "Brand new MacBook Pro"
+  ],
+
+  "job_level": "Entry Level",
+  "education": "Graduation",
+  "posted_date": "2026-08-18",
+  "expire_date": "2026-09-18",
+
+  "tags": [
+    "UX Design",
+    "UI",
+    "Figma"
+  ]
+
+  },
+  {
+    "id": 2,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/736x/fc/a5/cf/fca5cf355e7b3c29a6caa9564430d872.jpg",
+    "location": "KOlkata, West Bangal",
+    "category_id": 1,
+    "is_active": true,
+         "description": "We are looking for a talented Frontend Developer to join our growing team. You will work with designers, developers, and product teams to build clean, responsive, and user-friendly web applications. The role involves translating project requirements into high-quality, maintainable code and delivering exceptional digital experiences.",
+
+  "requirements": [
+    "Great troubleshooting and analytical skills combined with the desire to tackle challenges head-on",
+    "3+ years of experience in frontend development working on multiple projects",
+    "Experience with HTML, JavaScript, CSS, and modern frontend frameworks",
+    "Working regularly with APIs and Web Services",
+    "Familiarity with version control and project management systems such as GitHub and Jira"
+  ],
+
+  "benefits": [
+    "28 days holiday including bank holidays",
+    "Generous annual bonus",
+    "Healthcare package",
+    "Free breakfast on Mondays and free snacks in the office",
+    "Brand new MacBook Pro"
+  ],
+
+  "job_level": "Entry Level",
+  "education": "Graduation",
+  "posted_date": "2026-08-18",
+  "expire_date": "2026-09-18",
+
+  "tags": [
+    "UX Design",
+    "UI",
+    "Figma"
+  ]
+
+  },
+  {
+    "id": 3,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "shaheen baag, Delhi",
+    "category_id": 1,
+    "is_active": true,
+         "description": "We are looking for a talented Frontend Developer to join our growing team. You will work with designers, developers, and product teams to build clean, responsive, and user-friendly web applications. The role involves translating project requirements into high-quality, maintainable code and delivering exceptional digital experiences.",
+
+  "requirements": [
+    "Great troubleshooting and analytical skills combined with the desire to tackle challenges head-on",
+    "3+ years of experience in frontend development working on multiple projects",
+    "Experience with HTML, JavaScript, CSS, and modern frontend frameworks",
+    "Working regularly with APIs and Web Services",
+    "Familiarity with version control and project management systems such as GitHub and Jira"
+  ],
+
+  "benefits": [
+    "28 days holiday including bank holidays",
+    "Generous annual bonus",
+    "Healthcare package",
+    "Free breakfast on Mondays and free snacks in the office",
+    "Brand new MacBook Pro"
+  ],
+
+  "job_level": "Entry Level",
+  "education": "Graduation",
+  "posted_date": "2026-08-18",
+  "expire_date": "2026-09-18",
+
+  "tags": [
+    "UX Design",
+    "UI",
+    "Figma"
+  ]
+
+  },
+  {
+    "id": 4,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Baag Bazar, Kolkata",
+    "category_id": 1,
+    "is_active": true,
+         "description": "We are looking for a talented Frontend Developer to join our growing team. You will work with designers, developers, and product teams to build clean, responsive, and user-friendly web applications. The role involves translating project requirements into high-quality, maintainable code and delivering exceptional digital experiences.",
+
+  "requirements": [
+    "Great troubleshooting and analytical skills combined with the desire to tackle challenges head-on",
+    "3+ years of experience in frontend development working on multiple projects",
+    "Experience with HTML, JavaScript, CSS, and modern frontend frameworks",
+    "Working regularly with APIs and Web Services",
+    "Familiarity with version control and project management systems such as GitHub and Jira"
+  ],
+
+  "benefits": [
+    "28 days holiday including bank holidays",
+    "Generous annual bonus",
+    "Healthcare package",
+    "Free breakfast on Mondays and free snacks in the office",
+    "Brand new MacBook Pro"
+  ],
+
+  "job_level": "Entry Level",
+  "education": "Graduation",
+  "posted_date": "2026-08-18",
+  "expire_date": "2026-09-18",
+
+  "tags": [
+    "UX Design",
+    "UI",
+    "Figma"
+  ]
+
+  },
+  {
+    "id": 5,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Hyderabaad, Tamilnadu",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 6,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/86/8b/5c/868b5cc4013d00d29dcb7bfa0c00b784.jpg",
+    "location": "Tokyo, Japan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 7,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Wakanda, Vakanda",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 8,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Titan, Attack on Titan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 9,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/86/8b/5c/868b5cc4013d00d29dcb7bfa0c00b784.jpg",
+    "location": "Tokyo, Japan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 10,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Wakanda, Vakanda",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 11,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Titan, Attack on Titan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 12,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/86/8b/5c/868b5cc4013d00d29dcb7bfa0c00b784.jpg",
+    "location": "Tokyo, Japan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 13,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Wakanda, Vakanda",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 14,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Titan, Attack on Titan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 15,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/86/8b/5c/868b5cc4013d00d29dcb7bfa0c00b784.jpg",
+    "location": "Tokyo, Japan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 16,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Wakanda, Vakanda",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 17,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Titan, Attack on Titan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 18,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/86/8b/5c/868b5cc4013d00d29dcb7bfa0c00b784.jpg",
+    "location": "Tokyo, Japan",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 19,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Wakanda, Vakanda",
+    "category_id": 1,
+    "is_active": true
+  },
+  {
+    "id": 20,
+    "title": "Frontend Developer",
+    "job_type": "Full-time",
+    "salary": "₹6 - ₹10 LPA",
+    "company_name": "ABC Tech",
+    "company_logo": "https://i.pinimg.com/1200x/d3/2e/38/d32e380d73a5a7aa85c0c8e0fbbd5821.jpg",
+    "location": "Titan, Attack on Titan",
+    "category_id": 1,
+    "is_active": true
+  }
+]

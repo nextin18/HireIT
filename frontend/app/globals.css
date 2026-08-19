@@ -6,7 +6,8 @@
 
 :root {
 
-  --pg: #fff0e8;
+  --bg: #fff0e8;
+  --secondrybg: #f5f5f5;
   --primaryColor: #ffff;
   --secondryColor: #ff5a18;
   --thirdColor: #000;
@@ -14,13 +15,32 @@
   --secondryText: #787878;
 
   --primaryTextSize: 120rem;
+  --skeletonBase: #e5e7eb;
+  --skeletonHighlight: rgb(255 255 255 / 70%);
 
   /* Other Colors */
+
+  /* Grey */
   --lightGrey: #f4f8f9;
   --darkGrey: #d1d5db;
   --extradarkGrey: #55565a;
+
+  /* Blue */
   --lightSkyBlue: #3b82f6;
+  --extralightBlue: #eaf0ff;
   --darkSkyBlue: #1e40af;
+
+  /* Yellow */
+  --extraLightYellow: #fff8ec;
+  --lightYellow: #ffe9ad;
+  --yellow: #f0b100;
+
+  /* GReen */
+  --extraLightGreen: #eafaf4;
+  --lightGreen: #c4f1dc;
+  --emeraldGreen: #00bc7d;
+
+
 
   --btnActiveBg: var(--thirdColor);
   --btndeactiveBg: var(--primaryColor);
@@ -72,11 +92,26 @@
 }
 
 body {
-  background-color: var(--pg);
+  background-color: var(--bg);
 }
 
 @layer components {
   /* Reusable class declaration */
+
+  .home-skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--skeletonBase);
+  }
+
+  .home-skeleton::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background: linear-gradient(90deg, transparent, var(--skeletonHighlight), transparent);
+    transform: translateX(-100%);
+    animation: home-skeleton-shimmer 1.8s ease-in-out infinite;
+  }
 
   .authMaindev {
     @apply min-h-screen bg-(--background) lg:flex;
@@ -106,6 +141,18 @@ body {
 
   .actionBtn {
     @apply bg-(--secondryColor) text-white min-w-full py-2 px-4 rounded-md;
+  }
+}
+
+@keyframes home-skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-skeleton::before {
+    animation: none;
   }
 }
 
@@ -155,31 +202,50 @@ body {
 
 .dark {
 
-  --bg: #fff0e8;
-  --primaryColor: #000;
-  --secondryColor: #ff5a18;
-  --thirdColor: #ffff;
-  --whitetext: #000;
-  --primaryText: #ffff;
-  /* Other Colors */
-  --lightGrey: #f4f8f9;
-  --darkGrey: #d1d5db;
-  --extradarkGrey: #55565a;
-  --lightSkyBlue: #3b82f6;
-  --darkSkyBlue: #1e40af;
+  --bg: #171717;
+  --secondrybg: #262626;
+  --primaryColor: #1f1f1f;
+  --secondryColor: #ff7a45;
+  --thirdColor: #ffffff;
+  --whitetext: #ffffff;
+  --primaryText: #f5f5f5;
+  --secondryText: #a3a3a3;
+  --skeletonBase: #3a3a3a;
+  --skeletonHighlight: rgb(255 255 255 / 12%);
 
-  --btnActiveBg: var(--darkGrey);
-  --btndeactiveBg: var(--lightGrey);
-  --btnActiveText: var(--whitetext);
-  --btndeactiveText: var(--whitetext);
+  /* Other Colors */
+  /* Grey */
+  --lightGrey: #2b2b2b;
+  --darkGrey: #525252;
+  --extradarkGrey: #a3a3a3;
+
+  /* Blue */
+  --lightSkyBlue: #60a5fa;
+  --extralightBlue: #1e3a5f;
+  --darkSkyBlue: #93c5fd;
+
+  /* Yellow */
+  --extraLightYellow: #4a3510;
+  --lightYellow: #6b4a12;
+  --yellow: #fbbf24;
+
+  /* Green */
+  --extraLightGreen: #12372b;
+  --lightGreen: #1f5a43;
+  --emeraldGreen: #34d399;
+
+  --btnActiveBg: var(--thirdColor);
+  --btndeactiveBg: var(--primaryColor);
+  --btnActiveText: var(--primaryColor);
+  --btndeactiveText: var(--primaryText);
   --btnactiveBorder: var(--thirdColor);
   --btndeactiveBorder: var(--darkGrey);
   --btnHoverBg: var(--thirdColor);
 
-  --inputBorder: var(--lightGrey);
+  --inputBorder: var(--darkGrey);
   --inputFocusBorder: var(--lightSkyBlue);
   --inputFocusRing: var(--lightSkyBlue);
-  --inputPlaceholder: var(--darkGrey);
+  --inputPlaceholder: var(--extradarkGrey);
   --inputBg: var(--lightGrey);
 
 
@@ -191,7 +257,7 @@ body {
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: black;
+  --primary: oklch(0.985 0 0);
   --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -217,6 +283,41 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
+}
+
+/* react-flags-select injects a light dropdown. Keep its panel readable in dark mode. */
+.dark [class*="ReactFlagsSelect-module_selectBtn"] {
+  color: var(--primaryText) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_selectBtn"]::after {
+  border-top-color: var(--primaryText) !important;
+  border-bottom-color: var(--primaryText) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_selectOptions"] {
+  background: var(--primaryColor) !important;
+  border-color: var(--darkGrey) !important;
+  color: var(--primaryText) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_filterBox"] {
+  background: var(--primaryColor) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_filterBox"] input {
+  background: var(--lightGrey) !important;
+  border: 1px solid var(--darkGrey) !important;
+  color: var(--primaryText) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_filterBox"] input::placeholder {
+  color: var(--secondryText) !important;
+}
+
+.dark [class*="ReactFlagsSelect-module_selectOption"]:hover,
+.dark [class*="ReactFlagsSelect-module_selectOption"]:focus {
+  background: var(--secondrybg) !important;
 }
 
 @layer base {

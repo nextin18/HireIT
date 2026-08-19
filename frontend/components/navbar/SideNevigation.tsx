@@ -16,7 +16,7 @@ export default function SideNevigation() {
 
     const getLinkClass = (path: string) =>
         `flex items-center gap-2 rounded-xl p-2 transition-colors px-5 ${isActive(path)
-            ? "bg-(--pg) text-(--secondryColor) font-semibold"
+            ? "bg-(--bg) text-(--secondryColor) font-semibold"
             : "hover:bg-(--thirdColor)/5 font-medium text-[.9rem] text-(--secondryText) tracking-wide"
         }`
     const headingCss = "mb-2 px-6 text-[.9rem] text-(--primaryText) font-medium uppercase tracking-wider"
@@ -28,7 +28,7 @@ export default function SideNevigation() {
                 <h2 className={`${headingCss} `}>Analytics</h2>
                 <div className='flex flex-col gap-2'>
                     <Link href="/home" className={getLinkClass('/home')}> <House strokeWidth={isActive('/home') ? 2.8 : 2} size={16} /> Home </Link>
-                    <Link href="/search" className={getLinkClass('/search')}><LuSearch strokeWidth={isActive('/search') ? 2.8 : 2} size={16} />Search</Link>
+                    <Link href="/jobsearch" className={getLinkClass('/jobsearch')}><LuSearch strokeWidth={isActive('/jobsearch') ? 2.8 : 2} size={16} />Search</Link>
                     <Link href="/message" className={getLinkClass('/message')}><AiOutlineMessage strokeWidth={isActive('/message') ? 2.8 : 2} size={16} />Message</Link>
                     <Link href="/reels" className={getLinkClass('/reels')}><Clapperboard strokeWidth={isActive('/reels') ? 2.8 : 2} size={16} />Reels</Link>
                 </div>
