@@ -40,7 +40,7 @@ export default function RecommendedJobs() {
       
       {/* Header */}
       <div className="mb-5 flex items-center justify-between">
-        <h2 className="text-lg font-bold text-(primaryText)">
+        <h2 className="text-lg font-bold text-(--primaryText)">
           Recommended Jobs
         </h2>
 

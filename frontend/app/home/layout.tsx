@@ -1,12 +1,12 @@
 "use client"
-import React, { Children } from 'react'
+import React from 'react'
 
-export default function ({
+export default function HomeLayout({
     children,
 }: {
     children: React.ReactNode;
 }) { 
   return (
-    <div className='min-h-full w-full sm:px-7 lg:p-6 xl:p-10'>{children}</div>
+    <div className='min-h-screen w-full bg-(--bg) sm:px-7 lg:p-6 xl:p-10'>{children}</div>
   )
 }

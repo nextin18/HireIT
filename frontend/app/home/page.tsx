@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import LeftSide from '@/components/home/LeftSide';
 import RightSide from '@/components/home/RightSide';
+import Loading from './loading';
 
 function HomePage() {
   const router = useRouter()
@@ -23,7 +24,7 @@ function HomePage() {
   }, [loading, router, user])
 
   if (loading || !user) {
-    return <div>Loading...</div>
+    return <div><Loading/></div>
   }
 
   return (
