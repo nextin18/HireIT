@@ -17,11 +17,28 @@
   --primaryTextSize: 120rem;
 
   /* Other Colors */
+
+  /* Grey */
   --lightGrey: #f4f8f9;
   --darkGrey: #d1d5db;
   --extradarkGrey: #55565a;
+
+  /* Blue */
   --lightSkyBlue: #3b82f6;
+  --extralightBlue: #eaf0ff;
   --darkSkyBlue: #1e40af;
+
+  /* Yellow */
+  --extraLightYellow: #fff8ec;
+  --lightYellow: #ffe9ad;
+  --yellow: #f0b100;
+
+  /* GReen */
+  --extraLightGreen: #eafaf4;
+  --lightGreen: #c4f1dc;
+  --emeraldGreen: #00bc7d;
+
+
 
   --btnActiveBg: var(--thirdColor);
   --btndeactiveBg: var(--primaryColor);

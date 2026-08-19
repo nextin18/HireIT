@@ -19,7 +19,7 @@ export default function JobsSearchLayout({
         });
     };
     return (
-        <>
+        <div>
             <JobSearch
                 keyword={keyword}
                 location={location}
@@ -30,6 +30,6 @@ export default function JobsSearchLayout({
                 onSearch={handleSearch}
             />
             {children}
-        </>
+        </div>
     );
 }
