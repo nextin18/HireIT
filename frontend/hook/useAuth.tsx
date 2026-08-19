@@ -1,3 +1,5 @@
+"use client"
+
 import { useContext } from 'react';
 import { AuthContext } from "@/store/auth/auth.context";
 import { login, logout, registerCompany, resigterCanditates } from "@/lib/api.auth";
