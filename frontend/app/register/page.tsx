@@ -52,16 +52,16 @@ export default function registration() {
         return (
             <div className='authMaindev'>
                 <Aside />
-                <section className="flex min-h-screen flex-1 items-center justify-center px-6 py-12 sm:px-10 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
-                    <div className="w-full max-w-91.5">
-                        <div className="mb-12 text-center lg:hidden text-[23px] font-bold tracking-[-1px]">
+                <section className="flex min-h-screen flex-1 items-center justify-center px-5 py-8 sm:px-10 sm:py-12 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
+                    <div className="w-full max-w-[23rem]">
+                        <div className="mb-8 text-center text-[23px] font-bold tracking-[-1px] sm:mb-12 lg:hidden">
                             <NextIn />
                         </div>
-                        <h2 className="text-center text-[38px] font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
+                        <h2 className="text-center text-3xl font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
                             Create an account
                         </h2>
 
-                        <div className="mt-20 grid grid-cols-2 gap-4">
+                        <div className="mt-10 grid grid-cols-2 gap-2 sm:mt-20 sm:gap-4">
                             <button type="button" onClick={() => setAccountType("job-finder")} className={`btn-toggle ${accountType === "job-finder" ? "btn-toggle-active" : "btn-toggle-inactive"}`}>
                                 Job Finders
                             </button>
@@ -74,7 +74,7 @@ export default function registration() {
                             {accountType === "job-finder" ? <CanditateRes /> : <CompanyRes />}
                         </div>
 
-                        <p className="mt-15 text-center text-sm text-(--blacktext)">
+                        <p className="mt-10 text-center text-sm text-(--blacktext) sm:mt-15">
                             Already have an account? <Link href="/login" className="singLink">Sign in</Link>
                         </p>
                     </div>
@@ -93,16 +93,16 @@ export default function registration() {
             <Aside />
 
             {/* Form side */}
-            <section className="flex min-h-screen flex-1 items-center justify-center px-6 py-12 sm:px-10 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
-                <div className="w-full max-w-91.5">
-                    <div className="mb-12 text-center lg:hidden text-[23px] font-bold tracking-[-1px]">
+            <section className="flex min-h-screen flex-1 items-center justify-center px-5 py-8 sm:px-10 sm:py-12 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
+                <div className="w-full max-w-[23rem]">
+                    <div className="mb-8 text-center text-[23px] font-bold tracking-[-1px] sm:mb-12 lg:hidden">
                         <NextIn />
                     </div>
-                    <h2 className="text-center text-[38px] font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
+                    <h2 className="text-center text-3xl font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
                         Create an account
                     </h2>
 
-                    <div className="mt-20 grid grid-cols-2 gap-4">
+                    <div className="mt-10 grid grid-cols-2 gap-2 sm:mt-20 sm:gap-4">
                         <button type="button" onClick={() => setAccountType("job-finder")} className={`btn-toggle ${accountType === "job-finder" ? "btn-toggle-active" : "btn-toggle-inactive"}`}>
                             Job Finders
                         </button>
@@ -115,7 +115,7 @@ export default function registration() {
                         {accountType === "job-finder" ? <CanditateRes /> : <CompanyRes />}
                     </div>
 
-                    <p className="mt-15 text-center text-sm text-(--blacktext)">
+                    <p className="mt-10 text-center text-sm text-(--blacktext) sm:mt-15">
                         Already have an account? <Link href="/login" className="singLink">Sign in</Link>
                     </p>
                 </div>

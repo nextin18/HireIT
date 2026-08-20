@@ -21,12 +21,12 @@ export default function Navigation() {
   const [search, setSearch] = useState("");
 
   return (
-    <div className='bg-(--primaryColor) w-full px-10 py-5 flex items-center justify-between border-b border-(--thirdColor)'>
+    <div className='flex w-full items-center justify-between border-b border-(--thirdColor) bg-(--primaryColor) px-3 py-4 sm:px-6 lg:px-10 lg:py-5'>
 
       {/* Logo & Search features */}
-      <div className='flex justify-between items-center gap-20 w-2/4'>
+      <div className='flex min-w-0 flex-1 items-center gap-3 sm:gap-6 lg:gap-20 lg:w-2/4'>
         <NextIn />
-        <form className=' w-full flex items-center justify-between border-[1.5px] border-(--thirdColor)/15 rounded-sm'>
+        <form className='flex w-auto shrink-0 items-center justify-between rounded-sm border-[1.5px] border-(--thirdColor)/15 md:w-full'>
 
           {/* Countries Flag */}
           <ReactFlagsSelect
@@ -44,17 +44,17 @@ export default function Navigation() {
           />
 
           {/* Divider */}
-          <div className="h-6 w-px bg-(--thirdColor)/15" />
+          <div className="hidden h-6 w-px bg-(--thirdColor)/15 md:block" />
 
           {/* Search Icon */}
-          <div className=' w-7/8 ml-2'>
+          <div className='ml-2 hidden w-7/8 md:block'>
             <SearchInput value={search} onChange={setSearch} placeholder="Job title, KEyword, Company" />
           </div>
         </form>
       </div>
 
       {/* Notification & Profile */}
-      <div className='flex justify-between items-center gap-5'>
+      <div className='ml-3 flex shrink-0 items-center gap-3 sm:gap-5'>
         <PiBell size={25} className='text-(--thirdColor)' />
         <Link href={"/profile"}>
           <Avatar size='lg'>
