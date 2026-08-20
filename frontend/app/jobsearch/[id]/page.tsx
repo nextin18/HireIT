@@ -19,7 +19,7 @@ export default async function JobDetails({ params, }: { params: Promise<{ id: st
 
 
     return (
-        <div className="flex flex-col gap-10 px-10">
+        <div className="flex min-w-0 flex-col gap-6 px-4 pb-8 sm:gap-8 sm:px-6 lg:gap-10 lg:px-10">
 
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-[2fr_1fr]">
 

@@ -20,7 +20,7 @@ export default function RightSide({ salary, location, posted_date, expire_date, 
 
             {/* section1, Salary */}
 
-            <div className="w-full bg-(--primaryColor) px-6 py-4 border border-(--secondryColor) rounded-2xl">
+            <div className="w-full rounded-2xl border border-(--secondryColor) bg-(--primaryColor) px-4 py-4 sm:px-6">
                 <div className="flex flex-col justify-between">
                     <p className={`${heading}`}>SALARY</p>
                     <p className="text-xl font-semibold mt-2">{salary}</p>
@@ -47,12 +47,12 @@ export default function RightSide({ salary, location, posted_date, expire_date, 
 
             {/* Section2, Job Overview */}
 
-            <div className="rounded-2xl border border-(--secondryColor) bg-(--primaryColor) p-6">
+            <div className="rounded-2xl border border-(--secondryColor) bg-(--primaryColor) p-4 sm:p-6">
                 <h2 className={`${heading}`}>
                     Job Overview
                 </h2>
 
-                <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6">
+                <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8">
 
                     {/* Job Posted */}
                     <div>

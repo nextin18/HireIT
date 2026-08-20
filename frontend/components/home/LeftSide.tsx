@@ -17,41 +17,67 @@ export default function LeftSide() {
             </header>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-5">
 
                 {/* Applied Jobs */}
-                <div className="flex items-center gap-5 rounded-2xl bg-(--extralightBlue) p-6">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-(--lightSkyBlue)/10">
-                        <BriefcaseBusiness className="text-(--lightSkyBlue)" size={30} />
+                <div className="flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl bg-(--extralightBlue) p-3 sm:p-4 md:flex-row md:gap-5 md:p-6">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--lightSkyBlue)/10 sm:h-12 sm:w-12 md:h-16 md:w-16 md:rounded-2xl">
+                        <BriefcaseBusiness
+                            className="h-5 w-5 text-(--lightSkyBlue) sm:h-6 sm:w-6 md:h-7.5 md:w-7.5"
+                        />
                     </div>
 
-                    <div>
-                        <h2 className="text-4xl font-bold">10</h2>
-                        <p className="text-(--secondryText)">Applied Jobs</p>
+                    <div className="min-w-0 text-center md:text-left">
+                        <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl">
+                            10
+                        </h2>
+
+                        <p className="text-xs leading-tight text-(--secondryText) sm:text-sm md:text-base">
+                            Applied Jobs
+                        </p>
                     </div>
                 </div>
+
 
                 {/* Favorite Jobs */}
-                <div className="flex items-center gap-5 rounded-2xl bg-(--extraLightYellow) p-6">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-(--lightYellow)">
-                        <Bookmark className="text-(--yellow)" size={30} />
+                <div className="flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl bg-(--extraLightYellow) p-3 sm:p-4 md:flex-row md:gap-5 md:p-6">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--lightYellow) sm:h-12 sm:w-12 md:h-16 md:w-16 md:rounded-2xl">
+                        <Bookmark
+                            className="h-5 w-5 text-(--yellow) sm:h-6 sm:w-6 md:h-7.5 md:w-7.5"
+                        />
                     </div>
 
-                    <div>
-                        <h2 className="text-4xl font-bold">14</h2>
-                        <p className="text-(--secondryText)">Favorite Jobs</p>
+                    <div className="min-w-0 text-center md:text-left">
+                        <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl">
+                            14
+                        </h2>
+
+                        <p className="text-xs leading-tight text-(--secondryText) sm:text-sm md:text-base">
+                            Favorite Jobs
+                        </p>
                     </div>
                 </div>
 
+
                 {/* Job Alerts */}
-                <div className="flex items-center gap-5 rounded-2xl bg-(--extraLightGreen) p-6">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-(--lightGreen)">
-                        <Bell className="text-(--emeraldGreen)" size={30} />
+                <div className="flex min-w-0 flex-col items-center justify-center gap-2 rounded-2xl bg-(--extraLightGreen) p-3 sm:p-4 md:flex-row md:gap-5 md:p-6">
+
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--lightGreen) sm:h-12 sm:w-12 md:h-16 md:w-16 md:rounded-2xl">
+                        <Bell
+                            className="h-5 w-5 text-(--emeraldGreen) sm:h-6 sm:w-6 md:h-7.5 md:w-7.5"
+                        />
                     </div>
 
-                    <div>
-                        <h2 className="text-4xl font-bold">90</h2>
-                        <p className="text-(--secondryText)">Job Alerts</p>
+                    <div className="min-w-0 text-center md:text-left">
+                        <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl">
+                            90
+                        </h2>
+
+                        <p className="text-xs leading-tight text-(--secondryText) sm:text-sm md:text-base">
+                            Job Alerts
+                        </p>
                     </div>
                 </div>
 
@@ -85,7 +111,7 @@ export default function LeftSide() {
 
             </div>
 
-            <Feeds/>
+            <Feeds />
 
         </div>
     )

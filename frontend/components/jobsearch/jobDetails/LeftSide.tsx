@@ -10,33 +10,33 @@ export default function LeftSide({ company_name, company_logo, title, descriptio
 
 
     return (
-        <div className="leftSide flex flex-col gap-5 w-full h-full">
+        <div className="leftSide flex h-full w-full min-w-0 flex-col gap-5">
 
-            <div className="companyDetail w-full justify-between bg-(--primaryColor) flex gap-5 items-center p-6 border border-(--secondryColor) rounded-2xl">
-                <div className=" flex gap-5 ">
-                    <div className='h-18 w-18 rounded-full bg-(--secondryColor) overflow-hidden'>
+            <div className="companyDetail flex w-full flex-col gap-5 rounded-2xl border border-(--secondryColor) bg-(--primaryColor) p-4 sm:p-6 md:flex-row md:items-center md:justify-between">
+                <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+                    <div className='h-16 w-16 shrink-0 overflow-hidden rounded-full bg-(--secondryColor) sm:h-18 sm:w-18'>
                         <img src={company_logo}
                             alt={`${company_name} logo`}
                             className="h-full w-full object-contain" />
                     </div>
-                    <div className='flex flex-col'>
-                        <p className='font-bold text-2xl text-(--primaryText)'>{title}</p>
-                        <div className='flex items-center gap-5'>
+                    <div className='min-w-0 flex flex-col'>
+                        <p className='break-words text-xl font-bold text-(--primaryText) sm:text-2xl'>{title}</p>
+                        <div className='flex flex-wrap items-center gap-2 sm:gap-5'>
                             <p className='text-(--secondryText) font-medium'>at  {company_name}</p>
                             <p className='text-(--primaryText) font-medium bg-(--bg) px-4 rounded-full'>{job_type}</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex items-center gap-5">
-                    <div className="p-2 bg-(--bg)/80 rounded-full"><Bookmark /></div>
-                    <button className="applyBtn flex items-center gap-3 bg-(--secondryColor) px-[1.9rem] w-full py-[.8rem] rounded-full text-[1.20rem] font-semibold text-(--primaryColor) cursor-pointer">
+                <div className="flex w-full items-center gap-3 md:w-auto md:gap-5">
+                    <div className="shrink-0 rounded-full bg-(--bg)/80 p-2"><Bookmark /></div>
+                    <button className="applyBtn flex flex-1 items-center justify-center gap-3 whitespace-nowrap rounded-full bg-(--secondryColor) px-5 py-3 text-base font-semibold text-(--primaryColor) cursor-pointer sm:px-7 sm:text-[1.20rem] md:flex-none">
                         Apply Now <ArrowRight />
                     </button>
                 </div>
             </div>
 
-            <div className="descriptionDetails flex flex-col gap-5 bg-(--primaryColor) p-6 rounded-2xl border border-(--secondryColor)">
+            <div className="descriptionDetails flex flex-col gap-5 rounded-2xl border border-(--secondryColor) bg-(--primaryColor) p-4 sm:p-6">
 
                 <div><h2 className={`${h2}`}>Job Description</h2>
                     <p className={`${p}`}>{description}</p>

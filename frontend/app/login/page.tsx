@@ -43,19 +43,19 @@ function page() {
     return (
       <div className='authMaindev'>
         <Aside />
-        <section className="flex min-h-screen flex-1 items-center justify-center px-6 py-12 sm:px-10 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
-          <div className="w-full max-w-91.5">
-            <div className="mb-12 text-center lg:hidden text-[23px] font-bold tracking-[-1px]">
+        <section className="flex min-h-screen flex-1 items-center justify-center px-5 py-8 sm:px-10 sm:py-12 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
+          <div className="w-full max-w-[23rem]">
+            <div className="mb-8 text-center text-[23px] font-bold tracking-[-1px] sm:mb-12 lg:hidden">
               <NextIn />
             </div>
-            <h2 className="text-center text-[38px] font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
+            <h2 className="text-center text-3xl font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
               Log in account
             </h2>
             <div className="mt-6">
               <LoginForm />
             </div>
 
-            <p className="mt-15 text-center text-sm text-(--blacktext)">
+            <p className="mt-10 text-center text-sm text-(--blacktext) sm:mt-15">
               Have not an account? <Link href="/register" className="singLink">Register.</Link>
             </p>
           </div>
@@ -72,19 +72,19 @@ function page() {
     <div className='authMaindev'>
       <Aside />
       {/* Form side */}
-      <section className="flex min-h-screen flex-1 items-center justify-center px-6 py-12 sm:px-10 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
-        <div className="w-full max-w-91.5">
-          <div className="mb-12 text-center lg:hidden text-[23px] font-bold tracking-[-1px]">
+      <section className="flex min-h-screen flex-1 items-center justify-center px-5 py-8 sm:px-10 sm:py-12 lg:rounded-bl-[44px] lg:rounded-tl-[44px]">
+        <div className="w-full max-w-[23rem]">
+          <div className="mb-8 text-center text-[23px] font-bold tracking-[-1px] sm:mb-12 lg:hidden">
             <NextIn />
           </div>
-          <h2 className="text-center text-[38px] font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
+          <h2 className="text-center text-3xl font-bold tracking-[-1.4px] text-(--blacktext) sm:text-[42px]">
             Log in account
           </h2>
           <div className="mt-6">
             <LoginForm />
           </div>
 
-          <p className="mt-15 text-center text-sm text-(--blacktext)">
+          <p className="mt-10 text-center text-sm text-(--blacktext) sm:mt-15">
             Have not an account? <Link href="/register" className="singLink">Register.</Link>
           </p>
         </div>

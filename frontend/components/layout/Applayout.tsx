@@ -1,9 +1,10 @@
 "use client"
 
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Navigation from "@/components/navbar/Navigation";
 import SideNevigation from "@/components/navbar/SideNevigation";
-import { NavigationMenuBackdrop } from "@base-ui/react";
 
 
 // Kya dekh rhe ho? I'm too lazy to start from beggining;😂
@@ -18,6 +19,20 @@ import { NavigationMenuBackdrop } from "@base-ui/react";
 
 export default function Applayout({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isCompactViewport, setIsCompactViewport] = useState(false);
+
+    useEffect(() => {
+        const mobileQuery = window.matchMedia("(max-width: 1023px)");
+        const updateSidebarForViewport = () => {
+            setIsCompactViewport(mobileQuery.matches);
+            setIsSidebarCollapsed(mobileQuery.matches);
+        };
+
+        updateSidebarForViewport();
+        mobileQuery.addEventListener("change", updateSidebarForViewport);
+        return () => mobileQuery.removeEventListener("change", updateSidebarForViewport);
+    }, []);
 
     // Hide the main Navbar from this pages.
     const hiddenRoutes = ["/", "/login", "/register"];
@@ -36,13 +51,26 @@ export default function Applayout({ children }: { children: React.ReactNode }) {
                 <Navigation />
             </header>
 
-            <aside className="fixed bottom-0 left-0 top-20 z-40 w-60 border-r border-(--thirdColor) bg-(--primaryColor) px-4 py-5">
-                <SideNevigation />
-            </aside>
+            <motion.aside
+                initial={false}
+                animate={{ width: isSidebarCollapsed ? 72 : 240 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="fixed bottom-0 left-0 top-20 z-40 overflow-hidden border-r border-(--thirdColor) bg-(--primaryColor) px-3 py-5"
+            >
+                <SideNevigation
+                    isCollapsed={isSidebarCollapsed}
+                    onToggle={() => setIsSidebarCollapsed((isCollapsed) => !isCollapsed)}
+                />
+            </motion.aside>
 
-            <main className="ml-60 min-h-screen pt-20">
+            <motion.main
+                initial={false}
+                animate={{ marginLeft: isCompactViewport ? 72 : isSidebarCollapsed ? 72 : 240 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="min-h-screen pt-20"
+            >
                 {children}
-            </main>
+            </motion.main>
         </>
     );
 }
