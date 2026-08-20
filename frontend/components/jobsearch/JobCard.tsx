@@ -11,7 +11,7 @@ export default function JobCard() {
   const router = useRouter()
 
   return (
-    <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5 cursor-pointer">
+    <div className="grid w-full grid-cols-[repeat(auto-fit,minmax(380px,1fr))] gap-5 cursor-pointer">
       {jobs.map((job) => (
         <div key={job.id} onClick={() => router.push(`/jobsearch/${job.id}`)} className="flex min-w-0 min-h-48.75 w-full flex-col justify-between rounded-2xl border border-(--secondryColor) bg-(--primaryColor) p-4">
           <div>

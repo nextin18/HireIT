@@ -26,7 +26,7 @@ export default function Navigation() {
       {/* Logo & Search features */}
       <div className='flex min-w-0 flex-1 items-center gap-3 sm:gap-6 lg:gap-20 lg:w-2/4'>
         <NextIn />
-        <form className='flex w-auto shrink-0 items-center justify-between rounded-sm border-[1.5px] border-(--thirdColor)/15 md:w-full'>
+        <form className='w-3/6 flex items-center justify-between border-[1.5px] border-(--thirdColor)/15 rounded-sm'>
 
           {/* Countries Flag */}
           <ReactFlagsSelect
