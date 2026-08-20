@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Geist, Inter, Plus_Jakarta_Sans, Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/skiper-ui/theme-provider";
 import { Toggle } from "@/components/ui/Toggle";
@@ -16,6 +16,10 @@ const geistSans = Geist({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+const noto_sans = Noto_Sans({
+  variable: "--Noto-Sans",
   subsets: ["latin"],
 });
 const plusJakarta = Plus_Jakarta_Sans({
@@ -37,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en" suppressHydrationWarning
-      className={`${inter.variable} ${plusJakarta.variable} h-full antialiased`}
+      className={`${inter.variable} ${plusJakarta.variable} ${noto_sans.variable} h-full antialiased`}
     >
       <body className="min-h-full h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

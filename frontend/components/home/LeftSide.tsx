@@ -7,7 +7,7 @@ export default function LeftSide() {
         <div className='leftSide flex flex-col gap-8'>
 
             <header className="mb-0">
-                <h1 className="text-3xl font-bold">
+                <h1 className="text-3xl font-bold ">
                     Hello, Amir 👋
                 </h1>
 

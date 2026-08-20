@@ -93,6 +93,7 @@
 
 body {
   background-color: var(--bg);
+  font-family: var(--font-jakarta);
 }
 
 @layer components {
